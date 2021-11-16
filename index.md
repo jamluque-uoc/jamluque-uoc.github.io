@@ -4,7 +4,7 @@ A5: Estudio de técnicas de visualización de datos (PEC2)
 
 # Timeline
 
-[Link](/html/timeline.html) Timeline sobre la inflacción alimentaria por paises.
+[Timeline sobre la inflacción alimentaria por paises.](/html/timeline.html)
 
 ![Images](/images/timeline.png)
 
