@@ -4,9 +4,9 @@ A5: Estudio de técnicas de visualización de datos (PEC2)
 
 # Timeline
 
-[/html/timeline.html] Timeline sobre la inflacción alimentaria por paises.
+[Link](/html/timeline.html) Timeline sobre la inflacción alimentaria por paises.
 
-![/images/timeline.png]
+![Images](/images/timeline.png)
 
 
 # Dendrogram circle
