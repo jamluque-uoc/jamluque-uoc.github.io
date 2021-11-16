@@ -2,6 +2,9 @@
 
 A5: Estudio de técnicas de visualización de datos (PEC2)
 
+PEC realizada con las librerias de R ggplot2 y ggmap
+[UOC link recursos](http://cvapp.uoc.edu/autors/MostraPDFMaterialAction.do?id=235524)
+
 # Timeline
 
 [Timeline sobre la inflacción alimentaria por paises.](/html/timeline.html)
