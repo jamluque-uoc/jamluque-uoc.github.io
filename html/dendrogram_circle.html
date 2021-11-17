@@ -383,6 +383,18 @@ pre code {
 </div>
 
 
+<p><strong>Titulo</strong> Dendrograma sobre los delitos cometidos en 1973 en USA</p>
+<p><strong>Datos</strong></p>
+<ul>
+<li><em>Fuente</em>: World Almanac and Book of facts 1975. (Crime rates).</li>
+<li><em>Descripción</em>: dataset con con 50 observaciones correspondientes a los diferentes tipos de delitos por estado y 4 variables correspondientes a cada uno de los delitos.</li>
+<li><em>Licencia</em>: LLMC Digital</li>
+<li><em>Fecha publicación</em>: 1975</li>
+</ul>
+<p><strong>Visualización</strong> etiquetado, titulo, subtitulo, footer, etiqeutado informativo de cada crimen por color, Dendrograma circular</p>
+<p><strong>Diseño</strong> Se ha identificado por color cada uno de los diferentes crimenes mas relevantes por estado.</p>
+<p><strong>Preguntas</strong></p>
+<p>¿Que tipo de crimen es mas relevante por estado?</p>
 <p><strong>Indicad donde está colgada la visualización y cómo acceder.</strong></p>
 <p>En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:</p>
 <ul>
@@ -411,6 +423,7 @@ pre code {
 library(ggplot2)
 library(gridExtra)
 library(grid)</code></pre>
+<pre class="r"><code>df_usa &lt;- USArrests</code></pre>
 <pre class="r"><code>head(USArrests)</code></pre>
 <pre><code>##            Murder Assault UrbanPop Rape
 ## Alabama      13.2     236       58 21.2
