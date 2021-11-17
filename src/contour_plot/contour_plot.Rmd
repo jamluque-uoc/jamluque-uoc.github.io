@@ -19,6 +19,28 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+**Titulo**
+Mortalidad por bajas temperaturas y contaminación en la ciudad de Chicago entre 1997-2000
+
+**Datos**
+
+- *Fuente*: National Morbidity and Mortality Air Pollution Study (NMMAPS)
+- *Descripción*: dataset con con 1461 observaciones y 10 variables correspondientes a cada una de las medidas tomadas.
+- *Licencia*: Creative Commons Attribution 4.0 International license
+- *Fecha publicación*: 2008 
+
+**Visualización** 
+etiquetado, titulo, subtitulo, footer, etiquetado informativo de las variables observadas, menu, Contour plot
+
+**Diseño**
+Se ha identificado por color y etiquetadas cada una de las observaciones seleccionadas para el estudio.
+
+**Preguntas**
+
+¿Hay una relacion entre las muertes en Chicago y las bajas temperaturas < 0ºC?
+
+¿Hay unas relación entre las muertes en Chicago con la contaminación (baja nivel de Ozono) y la temperatura?
+
 **Indicad donde está colgada la visualización y cómo  acceder.**
 
 En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:
@@ -85,7 +107,7 @@ head(chicago)
 ggplot(chicago, aes(temp, death)) +
   stat_density_2d_filled(show.legend = TRUE) +
   labs(x = "Temperature (°F)", y = "Death",
-       title="Mortalidad por Alta temperatura en la ciudad de Chicago en 1997", 
+       title="Mortalidad por Alta temperatura en la ciudad de Chicago entre 1997 y 2000", 
        subtitle = "Muerte vs Temperatura", 
        caption = "Source: https://link.springer.com/book/10.1007/978-0-387-78167-9")
 ```
@@ -102,7 +124,7 @@ ggplot(data = df, aes(x = x, y = y, z = death))  +
     stat_contour(color = "white", size = .7, bins = 5) +
     scale_fill_viridis_c(option = "inferno") +
     labs(x = "Temperature (°F)", y = "Ozone Level", 
-         title="Mortalidad por Contaminación en la ciudad de Chicago", 
+         title="Mortalidad por Contaminación en la ciudad de Chicago entre 1997 y 2000", 
          subtitle = "Tasa de Ozono y Temperatura", 
          caption = "Source: https://link.springer.com/book/10.1007/978-0-387-78167-9")
     

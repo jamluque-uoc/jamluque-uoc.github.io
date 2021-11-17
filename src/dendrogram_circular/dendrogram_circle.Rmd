@@ -19,6 +19,27 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+**Titulo**
+Dendrograma sobre los delitos cometidos en 1973 en USA
+
+**Datos**
+
+- *Fuente*: World Almanac and Book of facts 1975. (Crime rates).
+- *Descripción*: dataset con con 50 observaciones correspondientes a los diferentes tipos de delitos por estado y 4 variables correspondientes a cada uno de los delitos.
+- *Licencia*:  LLMC Digital
+- *Fecha publicación*: 1975 
+
+**Visualización** 
+etiquetado, titulo, subtitulo, footer, etiqeutado informativo de cada crimen por color, Dendrograma circular
+
+**Diseño**
+Se ha identificado por color cada uno de los diferentes crimenes mas relevantes por estado.
+
+**Preguntas**
+
+¿Que tipo de crimen es mas relevante por estado?
+
+
 **Indicad donde está colgada la visualización y cómo  acceder.**
 
 En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:
@@ -67,6 +88,11 @@ library(ggplot2)
 library(gridExtra)
 library(grid)
 ```
+
+```{r}
+df_usa <- USArrests
+```
+
 
 ```{r}
 head(USArrests)

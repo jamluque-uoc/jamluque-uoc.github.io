@@ -19,13 +19,34 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+**Titulo**
+Timeline sobre la tasa de inflacción por paises desde 1970 a 2015
+
+**Datos**
+
+- *Fuente*: http://eclr.humanities.manchester.ac.uk
+- *Descripción*: dataset con con 44 observaciones correspondientes a la tasa de inflacción por pais y 14 variables correspondientes a cada pais y el año que corresponde a cada inflacción
+- *Licencia*:  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
+- *Fecha publicación*: ultima actualización 26 julio 2016 
+
+**Visualización** 
+eje X e Y, etiquetado, titulo, subtitulo, footer, menu informativo de paises por colores, Grafico de lineas
+
+**Diseño**
+Se ha incorporado un color para cada etiqueta de pais, y un menu identificando el pais con su color.
+
+**Preguntas**
+
+¿Como ha evolucionado la inflación a lo largo de los años en diferentes paises?
+
+¿Que paises han tenido mayor y menos inflacción a lo largo de los años?
+
 **Indicad donde está colgada la visualización y cómo  acceder.**
 
 En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:
 
 - https://jamluque-uoc.github.io/
 - https://jamluque-uoc.github.io/html/timeline.html
-
 
 **Definid la técnica de visualización de forma general: nombre, origen, descripción/funcionamiento, ejemplos de aplicación, etc.**
 
@@ -60,7 +81,6 @@ Se ha usado un conjunto de datos de como ha evolucionado la inflacción en los a
 
 Los datos estan categorizados por paises, agrupados por año representando el % de inflacción de los alimentos en cada pais para ese año en concreto
 Se ha identificado puntos maximos y minimos en el tiempo de la inflación de unos paises.
-
 
 ```{r, warning=FALSE, message = FALSE}
 library(ggplot2)
