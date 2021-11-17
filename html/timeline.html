@@ -383,21 +383,38 @@ pre code {
 </div>
 
 
-<p><span style="font-family:SANS; font-size:14;"> <strong>Indicad donde está colgada la visualización y cómo acceder.</strong> <span></p>
-<p><span style="font-family:SANS; font-size:12;"></p>
-<p><span></p>
-<p><span style="font-family:SANS; font-size:14;"> <strong>Definid cada técnica de visualización de forma general: nombre, origen, descripción/funcionamiento, ejemplos de aplicación, etc.</strong> <span></p>
-<p><span style="font-family:SANS; font-size:12;"></p>
-<p><span></p>
-<p><span style="font-family:SANS; font-size:14;"> <strong>Describid el tipo de datos que se pueden representar con cada técnica (datos cuantitativos, cualitativas? Qué estructura tienen que tener para cada técnica?). Explicar las limitaciones en cuanto a datos (hay medida mínima y máxima del juego de datos para cada técnica?).</strong> <span></p>
-<p><span style="font-family:SANS; font-size:12;"></p>
-<p><span></p>
-<p><span style="font-family:SANS; font-size:14;"> <strong>Hacer una representación con cada una de las técnicas usando un conjunto de datos abiertos</strong> <span></p>
-<p><span style="font-family:SANS; font-size:12;"></p>
-<p><span></p>
-<p><span style="font-family:SANS; font-size:14;"> <strong>Comentar brevemente la representaciones indicando qué se representa y qué o qué aspectos muestra o demuestra cada representación.</strong> <span></p>
-<p><span style="font-family:SANS; font-size:12;"></p>
-<p><span></p>
+<p><strong>Indicad donde está colgada la visualización y cómo acceder.</strong></p>
+<p>En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:</p>
+<ul>
+<li><a href="https://jamluque-uoc.github.io/" class="uri">https://jamluque-uoc.github.io/</a></li>
+<li><a href="https://jamluque-uoc.github.io/html/timeline.html" class="uri">https://jamluque-uoc.github.io/html/timeline.html</a></li>
+</ul>
+<p><strong>Definid la técnica de visualización de forma general: nombre, origen, descripción/funcionamiento, ejemplos de aplicación, etc.</strong></p>
+<p><em>Timeline</em> (linea temporal): Gráfico que identifica eventos, hitos o acontecimientos en una linea de tiempo, perfectas para contar historias</p>
+<ul>
+<li>identificación de eventos y fechas inicial y final</li>
+<li>eventos en orden cronológico</li>
+<li>Seleccionar hitos relevantes</li>
+<li>Agrupación de eventos similares</li>
+<li>Determinar escala de visualización</li>
+</ul>
+<p>Se puede usar una linea de tiempo para:</p>
+<ul>
+<li>Resumir eventos</li>
+<li>Resaltar puntos importantes en el tiempo</li>
+<li>Detallar agenda o itinerario</li>
+</ul>
+<p><strong>Describid el tipo de datos que se representa con esta técnica (datos cuantitativos, cualitativas? Qué estructura tienen que tener para cada técnica?). Explicar las limitaciones en cuanto a datos (hay medida mínima y máxima del juego de datos para esta técnica?).</strong></p>
+<ul>
+<li>Datos <em>cuantitativos</em> pueden ser contados, medidos o expresados utilizando números. Directo y conclusivo</li>
+<li>Datos <em>cualitativos</em> son descriptivos y conceptuales. Este tipo de datos puede ser categorizados. Subjetivo, interpretativo y exploratorio</li>
+</ul>
+<p>Con esta tecnica se pueden representar ambos dos tipos, categorias que se quieren representar por agrupaciones y sumas o calculos de sus totales, por ejemplo.</p>
+<p>las limitaciones vienen dadas por el conjunto de datos, si es un conjunto muy amplio de datos y se quiere representar todo, es posible que la grafica sea confusa, aqui deberiamos agrupar o seleccionar por categorias, o identificar puntos representativo de un dato concreto en el tiempo para darle mas representación en el dato.</p>
+<p><strong>Hacer una representación con esta técnica de <em>Timeline</em> usando un conjunto de datos abiertos</strong></p>
+<p>Se ha usado un conjunto de datos de como ha evolucionado la inflacción en los alimentos en los diferentes paises del mundo desde 1970 a 2015.</p>
+<p><strong>Comentar brevemente la representaciones indicando qué se representa y qué aspectos muestra o demuestra cada representación.</strong></p>
+<p>Los datos estan categorizados por paises, agrupados por año representando el % de inflacción de los alimentos en cada pais para ese año en concreto Se ha identificado puntos maximos y minimos en el tiempo de la inflación de unos paises.</p>
 <pre class="r"><code>library(ggplot2)
 library(xts)  # eXtensible Time Series
 library(reshape2)</code></pre>
