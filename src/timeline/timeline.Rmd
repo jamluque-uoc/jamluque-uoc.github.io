@@ -1,0 +1,110 @@
+---
+title: "Timeline"
+author: "Autor: José Ángel Martínez Luque"
+date: "Semestre 1 - 2021"
+output:
+  html_document:
+    highlight: default
+    number_sections: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+  word_document: default
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Indicad donde está colgada la visualización y cómo  acceder.**
+
+En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:
+
+- https://jamluque-uoc.github.io/
+- https://jamluque-uoc.github.io/html/timeline.html
+
+
+**Definid la técnica de visualización de forma general: nombre, origen, descripción/funcionamiento, ejemplos de aplicación, etc.**
+
+*Timeline* (linea temporal): Gráfico que identifica eventos, hitos o acontecimientos en una linea de tiempo, perfectas para contar historias
+
+- identificación de eventos y fechas inicial y final
+- eventos en orden cronológico
+- Seleccionar hitos relevantes
+- Agrupación de eventos similares
+- Determinar escala de visualización
+
+Se puede usar una linea de tiempo para:
+
+- Resumir eventos
+- Resaltar puntos importantes en el tiempo
+- Detallar agenda o itinerario
+
+**Describid el tipo de datos que se representa con esta técnica (datos cuantitativos, cualitativas? Qué estructura tienen que tener para cada técnica?). Explicar las limitaciones en cuanto a datos (hay medida mínima y máxima del juego de datos para esta técnica?).**
+
+- Datos *cuantitativos* pueden ser contados, medidos o expresados utilizando números. Directo y conclusivo
+- Datos *cualitativos* son descriptivos y conceptuales. Este tipo de datos puede ser categorizados. Subjetivo, interpretativo y exploratorio
+
+Con esta tecnica se pueden representar ambos dos tipos, categorias que se quieren representar por agrupaciones y sumas o calculos de sus totales, por ejemplo.
+
+las limitaciones vienen dadas por el conjunto de datos, si es un conjunto muy amplio de datos y se quiere representar todo, es posible que la grafica sea confusa, aqui deberiamos agrupar o seleccionar por categorias, o identificar puntos representativo de un dato concreto en el tiempo para darle mas representación en el dato.
+
+**Hacer una representación con esta técnica de *Timeline* usando un conjunto de datos abiertos**
+
+Se ha usado un conjunto de datos de como ha evolucionado la inflacción en los alimentos en los diferentes paises del mundo desde 1970 a 2015.
+
+**Comentar brevemente la representaciones indicando qué se representa y qué aspectos muestra o demuestra cada representación.**
+
+Los datos estan categorizados por paises, agrupados por año representando el % de inflacción de los alimentos en cada pais para ese año en concreto
+Se ha identificado puntos maximos y minimos en el tiempo de la inflación de unos paises.
+
+
+```{r, warning=FALSE, message = FALSE}
+library(ggplot2)
+library(xts)  # eXtensible Time Series
+library(reshape2)
+```
+
+```{r}
+food <- read.csv('data/inflaccionAlimentos.csv',na.strings = "")
+```
+
+```{r}
+head(food)
+```
+
+
+```{r}
+food <- xts(food[,-1], order.by=as.Date(paste0(food[,1],"-01-01")))
+```
+
+```{r}
+temp <- data.frame(index(food),stack(as.data.frame(coredata(food))))
+```
+
+```{r}
+names(temp)[1] <- "year"
+names(temp)[2] <- "infla"
+names(temp)[3] <- "Pais"
+```
+
+```{r}
+ggplot(temp,aes(x=year, y=infla, color=Pais)) +
+  geom_line(na.rm = TRUE) +
+  annotate("text",x=as.Date("1972-06-01"),y=28,label="JAP",fontface="bold",size=3) +
+  annotate("text",x=as.Date("1976-06-01"),y=25,label="UK",fontface="bold",size=3)  +
+  annotate("text",x=as.Date("1998-03-01"),y=-5,label="SWE",fontface="bold",size=3) +
+  annotate("text",x=as.Date("1983-12-01"),y=15,label="ITA",fontface="bold",size=3) +
+  annotate("text",x=as.Date("1993-06-01"),y=-6,label="FIN",fontface="bold",size=3) +
+  annotate("text",x=as.Date("2005-10-01"),y=-4,label="NET",fontface="bold",size=3) +
+  labs(title="Tasa de Inflacción por paises", 
+       subtitle = "Alimentaria", 
+       caption = "Source: http://eclr.humanities.manchester.ac.uk",
+       y= "% Inflacción", x= "Años") +
+  theme(text=element_text(family="Comic Sans MS"))
+```
+
+

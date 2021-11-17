@@ -1,0 +1,102 @@
+---
+title: "Dendrogram Circle"
+author: "Autor: José Ángel Martínez Luque"
+date: "Semestre 1 - 2021"
+output:
+  html_document:
+    highlight: default
+    number_sections: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+  word_document: default
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Indicad donde está colgada la visualización y cómo  acceder.**
+
+En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:
+
+- https://jamluque-uoc.github.io/
+- https://jamluque-uoc.github.io/html/dendrogram_circle.html
+
+**Definid la técnica de visualización de forma general: nombre, origen, descripción/funcionamiento, ejemplos de aplicación, etc.**
+
+*Dendrogram Circle* : diagrama de árbol que muestra los grupos que se forman al crear conglomerados de observaciones en cada paso y sus niveles de similitud, en este caso circular pero sin perder el concepto de dendrogram.
+
+*Ejemplo para modelos no supervisados:*
+Para llegar a generar un dendrograma: primero hay que tener matriz de distancias del dataset original, y así podemos ir agrupando los individuos de la tabla de datos usando algún algoritmo de agrupamiento, o clustering jerárquico
+
+Un posible uso *Clasificar mamiferos segun su dieta*.
+*Pokémon*: salud, poder de ataque, poder de defensa, ataque especial, defensa especial, velocidad.
+
+Se agrupan los dos individuos más parecidos (más cercanos según la distancia usada) en un grupo.
+
+
+**Describid el tipo de datos que se representa con esta técnica (datos cuantitativos, cualitativas? Qué estructura tienen que tener para cada técnica?). Explicar las limitaciones en cuanto a datos (hay medida mínima y máxima del juego de datos para esta técnica?).**
+
+- Datos *cuantitativos* pueden ser contados, medidos o expresados utilizando números. Directo y conclusivo
+- Datos *cualitativos* son descriptivos y conceptuales. Este tipo de datos puede ser categorizados. Subjetivo, interpretativo y exploratorio
+
+Para esta tecnica se pueden hacer uso de ambos tipos de datos, categoricos para crear las agrupaciones con respecto a los cuantitativos, que como se ha explicado es con el que se haran las agrupaciones hacia los cualitativos.
+
+Las limitaciones vendran dadas por la cantidad de etiquetas, categorias, que se quieran mostrar, se representara un grafico muy poco visible y perceptible.
+
+**Hacer una representación con esta técnica de *Dendrogram Circle* usando un conjunto de datos abiertos**
+
+Para la representación de esta gráfica se hecho uso de un dataset que se incorpora en las librerias de R, *USArrests*, donde esta expresado el tipo de delitos y numero de ellos que se cometen en USA por cada estado en 1973.
+
+Mas abajo se puede ver una porcion de los datos del dataset.
+
+**Comentar brevemente la representaciones indicando qué se representa y qué aspectos muestra o demuestra cada representación.**
+
+Se tipifican como delitos: "Asesinatos", "Asaltos", "Atraco", "Violación", y estos estan asofiados a cada estado con una variable numérica. que representa el numero del delito.
+
+en la grafica representa por colores cual es el delito mas representativo por cada estado de USA.
+
+
+```{r, warning=FALSE, message = FALSE}
+library(factoextra)
+library(ggplot2)
+library(gridExtra)
+library(grid)
+```
+
+```{r}
+head(USArrests)
+```
+
+```{r, warning=FALSE}
+
+fviz_dend(hclust(dist(scale(USArrests))), 
+          cex = 0.5, 
+          lwd = 0.5, 
+          k = 4,
+          color_labels_by_k = TRUE,
+          k_colors =  c("red", "blue", "orange", "green"), #  "jco",
+          rect_lty = 1,
+          rect_fill = FALSE,
+          repel = TRUE,
+          type = "circular") + 
+  theme(plot.title=element_text(size=20, 
+                                face="bold", 
+                                family="American Typewriter",
+                                color="tomato",
+                                hjust=0.5,
+                                lineheight=1.2)) +
+  labs(title = "Delitos cometidos en USA en 1973", 
+       subtitle = "Tipos de delito por estado", 
+       caption = "source: https://rdrr.io/r/datasets/USArrests.html") 
+
+table = data.frame("Delito"=c("Asesinatos","Asaltos","Atraco","Violación"),
+                   "Color"=c("Rojo", "Azul", "Naranja", "Verde"))
+
+grid.draw(tableGrob(table, rows=NULL, theme = ttheme_minimal()))
+```
+

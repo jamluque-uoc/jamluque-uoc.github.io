@@ -1,0 +1,109 @@
+---
+title: "Contour plot"
+author: "Autor: José Ángel Martínez Luque"
+date: "Semestre 1 - 2021"
+output:
+  html_document:
+    highlight: default
+    number_sections: yes
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+  word_document: default
+  pdf_document:
+    highlight: zenburn
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Indicad donde está colgada la visualización y cómo  acceder.**
+
+En los siguientes link se puede acceder libremente a la presentación de esta visualización de datos:
+
+- https://jamluque-uoc.github.io/
+- https://jamluque-uoc.github.io/html/contour_plot.html
+
+**Definid la técnica de visualización de forma general: nombre, origen, descripción/funcionamiento, ejemplos de aplicación, etc.**
+
+*Contour plot* :  observar cómo se relacionan los valores de respuesta ajustados con dos variables continuas, proporciona una vista bidimensional en la que todos los puntos que tienen la misma respuesta se conectan para producir líneas de contorno de las respuestas constantes
+
+- Líneas de contorno que conectan puntos que tienen el mismo valor de respuesta ajustada
+- Bandas de contorno de color que representan intervalos de los valores de respuesta ajustada
+
+Una gráfica de contorno puede incluir solo dos variables continuas, cuantitativas, (ejemplo 1 : Mortalidad por Alta temperatura en la ciudad de Chicago)
+
+Se utiliza para representar el cambio en los valores de Z en comparación con los valores de X e Y
+
+Si se quiere tener un valor Z del conjunto de datos se puede hacer (ejemplo 2 : Mortalidad por Contaminación en la ciudad de Chicago)
+
+**Describid el tipo de datos que se representa con esta técnica (datos cuantitativos, cualitativas? Qué estructura tienen que tener para cada técnica?). Explicar las limitaciones en cuanto a datos (hay medida mínima y máxima del juego de datos para esta técnica?).**
+
+- Datos *cuantitativos* pueden ser contados, medidos o expresados utilizando números. Directo y conclusivo
+- Datos *cualitativos* son descriptivos y conceptuales. Este tipo de datos puede ser categorizados. Subjetivo, interpretativo y exploratorio
+
+Para este tipo de grafica la base debe ser cuantitativa por los calculos que debe realizar para la representación de la grafica como se ha comentado en un punto mas arriba.
+
+
+**Hacer una representación con esta técnica de *Contour Plot* usando un conjunto de datos abiertos**
+
+Para la representación de esta grafica se ha usado un dataset donde se identifica las muertes de la ciudad de chicago por contaminazión en el año 1997.
+
+Mas abajo se puede ver una porcion de los datos del dataset usado.
+
+
+**Comentar brevemente la representaciones indicando qué se representa y qué o qué aspectos muestra o demuestra cada representación.**
+
+*Ejemplo 1: Mortalidad por Alta temperatura en la ciudad de Chicago*
+
+en este ejemplo se representa como es la relación entre las muertes producidas y la temperatura acaecida, se puede observar una relación contra mas temperatura, 18ºC el nivel de muertes no estan alto. Pero si que que observa otro punto alto, 0ºC, temperatura mas baja si que hay mas muertes.
+
+*ejemplo 2 : Mortalidad por Contaminación en la ciudad de Chicago*
+
+Para este ejemplo se ha añadido el valor Z del dataset, "death", sobre los niveles de ozono y temperatura.
+
+en este punto se puede observar que a menor temeratura, < 0ºC y un nivel de ozono bajo, se registran mas muertes.
+
+
+```{r, message = FALSE}
+library(akima)
+library(reshape2)
+library(ggplot2)
+```
+
+```{r}
+chicago <- read.csv("https://raw.githubusercontent.com/Z3tt/R-Tutorials/master/ggplot2/chicago-nmmaps.csv")
+```
+
+```{r}
+head(chicago)
+```
+
+```{r}
+ggplot(chicago, aes(temp, death)) +
+  stat_density_2d_filled(show.legend = TRUE) +
+  labs(x = "Temperature (°F)", y = "Death",
+       title="Mortalidad por Alta temperatura en la ciudad de Chicago en 1997", 
+       subtitle = "Muerte vs Temperatura", 
+       caption = "Source: https://link.springer.com/book/10.1007/978-0-387-78167-9")
+```
+
+```{r, warning=FALSE,}
+fld <- with(chicago, interp(x = temp, y = o3, z = death))
+
+df <- melt(fld$z, na.rm = TRUE)
+names(df) <- c("x", "y", "death")
+
+ggplot(data = df, aes(x = x, y = y, z = death))  +
+    stat_contour(aes(fill = ..level..)) +      
+    geom_tile(aes(fill = death)) +  
+    stat_contour(color = "white", size = .7, bins = 5) +
+    scale_fill_viridis_c(option = "inferno") +
+    labs(x = "Temperature (°F)", y = "Ozone Level", 
+         title="Mortalidad por Contaminación en la ciudad de Chicago", 
+         subtitle = "Tasa de Ozono y Temperatura", 
+         caption = "Source: https://link.springer.com/book/10.1007/978-0-387-78167-9")
+    
+```
